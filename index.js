@@ -1,6 +1,7 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema';
+import { getEnabledCategories } from 'trace_events';
 
 const app = express();
 
@@ -8,8 +9,17 @@ app.get('/', (req, res) => {
     res.send('GraphQL test!');
 });
 
-//Return the function 
-const root = { hello: () => "Hi, test. "};
+//Return the function(resolver) 
+const root = { friend: () => {
+    return{
+        "id": 11111,
+        "firstName": "Edgar",
+        "lastName": "Ronda",
+        "gender": "Male",
+        "language": "English",
+        "email": "me@mail.com",
+    }
+}};
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
