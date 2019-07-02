@@ -1,6 +1,0 @@
-{
-  # First Query!
-  viewer {
-    name
-  }
-}

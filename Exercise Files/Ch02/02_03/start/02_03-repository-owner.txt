@@ -1,9 +1,0 @@
-{
-  viewer {
-    name
-    bio
-    id
-    company
-    avatarURL
-  }
-}

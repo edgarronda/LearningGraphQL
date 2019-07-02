@@ -1,7 +1,0 @@
-{
-  repositoryOwner(login: "facebook") {
-    id
-    path
-    url
-  }
-}
