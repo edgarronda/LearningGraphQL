@@ -1,34 +1,33 @@
-import {resolvers} from './resolvers';
+import { resolvers } from './resolvers';
 import { makeExecutableSchema } from 'graphql-tools';
 
-//create object.
 const typeDefs = `
-    type Friend{
+    type Friend {
         id: ID
         firstName: String
         lastName: String
         gender: Gender
         age: Int
         language: String
-        emails: String
+        email: String
         contacts: [Contact]
     }
 
-    type Alien{
+    type Alien {
         id: ID
         firstName: String
         lastName: String
         planet: String
     }
 
-    type Contact{
+    type Contact {
         firstName: String
         lastName: String
     }
 
-    enum Gender{
+    enum Gender {
         MALE
-        FEMAIL
+        FEMALE
         OTHER
     }
 
@@ -36,25 +35,27 @@ const typeDefs = `
         getFriend(id: ID): Friend
     }
 
-    input FriendInput{
+    input FriendInput {
         id: ID
         firstName: String!
         lastName: String
         gender: Gender
         age: Int
         language: String
-        emails: String
+        email: String
         contacts: [ContactInput]
     }
 
-    input ContactInput{
+    input ContactInput {
         firstName: String
-        lastName: String
+        lastName: String 
     }
 
-    type Mutation{
+    type Mutation {
         createFriend(input: FriendInput): Friend
     }
-`
-const schema = makeExecutableSchema({typeDefs, resolvers});
+`;
+
+const schema = makeExecutableSchema({ typeDefs, resolvers});
+
 export { schema };
