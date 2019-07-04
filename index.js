@@ -9,20 +9,44 @@ app.get('/', (req, res) => {
     res.send('GraphQL test!');
 });
 
-//Return the function(resolver) 
-const root = { friend: () => {
-    return{
-        "id": 11111,
-        "firstName": "Edgar",
-        "lastName": "Ronda",
-        "gender": "Male",
-        "language": "English",
-        "emails": [
-            {email: "me@mail.com"},
-            {email: "me2@mail.com"}
-        ],
+//Uses for new Friend creation.
+class Friend{
+    constructor(id, {firstName, lastName, gender, language, email }){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.language = language;
+        this.email = email;
     }
-}};
+}
+
+const friendDatabase = {};
+
+//Return the function(resolver) 
+const root = { 
+    friend: () => {
+        return{
+            "id": 11111,
+            "firstName": "Edgar",
+            "lastName": "Ronda",
+            "gender": "Male",
+            "language": "English",
+            "emails": [
+                {email: "me@mail.com"},
+                {email: "me2@mail.com"}
+            ],
+        }
+    },
+
+    //Friend Resolver.
+    createFriend: ({input}) => {
+        let id = require('crypto').randomBytes(10).toString('hex');
+        friendDatabase[id] = input;
+        return new Friend(id, input);
+    }
+
+};
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
