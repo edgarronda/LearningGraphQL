@@ -2,7 +2,6 @@ import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema';
 import resolvers from './resolvers'
-import { getEnabledCategories } from 'trace_events';
 
 const app = express();
 

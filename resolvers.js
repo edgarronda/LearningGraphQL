@@ -1,13 +1,15 @@
 
 //Uses for new Friend creation.
 class Friend{
-    constructor(id, {firstName, lastName, gender, language, email }){
+    constructor(id, {firstName, lastName, gender,age, language, email, contacts }){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
+        this.age = age;
         this.language = language;
         this.email = email;
+        this.contacts = contacts;
     }
 }
 
